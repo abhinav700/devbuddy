@@ -1,6 +1,6 @@
 "use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import BodyTab from "./BodyTab";
+import BodyTab from "./Body/BodyTab";
 import { useState } from "react";
 import FieldTab from "./FieldTab";
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import JsonEditor from './JsonEditor'
 
 type props = {
   requestFormState: RequestFormData,
@@ -7,7 +8,9 @@ type props = {
 
 const BodyTab = ({requestFormState, setRequestFormState} : props) => {
   return (
-    <div>BodyTab</div>
+    <>
+      <JsonEditor/>
+    </>
   )
 }
 
