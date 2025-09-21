@@ -1,9 +1,8 @@
 "use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BodyTab from "./BodyTab";
-import HeadersTab from "./HeadersTab";
-import ParamsTab from "./ParamsTab";
 import { useState } from "react";
+import FieldTab from "./FieldTab";
 
 const RequestConfigTabs = () => {
   const classNames = {
@@ -12,8 +11,8 @@ const RequestConfigTabs = () => {
   };
 
   const defaultRequestFormValue: RequestFormData = {
-    "params": [],
-    "headers":[],
+    "params": [{ key: "", value: "", checked: false }],
+    "headers":[{ key: "", value: "", checked: false }],
     "body": "",
     "method": "GET",
   }
@@ -34,10 +33,16 @@ const RequestConfigTabs = () => {
         </TabsTrigger>
       </TabsList>
       <TabsContent value="params" className="p-2">
-        <ParamsTab requestFormState={requestFormState} setRequestFormState={setRequestFormState} />
+        <>
+          <p>Query Params</p>
+          <FieldTab fieldType="params" requestFormState={requestFormState} setRequestFormState={setRequestFormState} />
+        </>
       </TabsContent>
       <TabsContent value="headers" className="p-2">
-        <HeadersTab requestFormState={requestFormState} setRequestFormState={setRequestFormState} />
+        <>
+          <p>Headers</p>
+          <FieldTab fieldType="headers" requestFormState={requestFormState} setRequestFormState={setRequestFormState} />
+        </>
       </TabsContent>
       <TabsContent value="body" className="p-2">
         <BodyTab requestFormState={requestFormState} setRequestFormState={setRequestFormState} />

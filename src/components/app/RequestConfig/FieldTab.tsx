@@ -11,22 +11,18 @@ import KeyValueRow from "./KeyValueRow";
 type props = {
   requestFormState: RequestFormData;
   setRequestFormState: React.Dispatch<React.SetStateAction<RequestFormData>>;
+  fieldType: "params" | "headers";
 };
 
-const ParamsTab = ({ requestFormState, setRequestFormState }: props) => {
+const FieldTab = ({ requestFormState, setRequestFormState, fieldType }: props) => {
   const classNames = {
     tableHead: "text-center border-1 border-[#ccc] border-collapse",
     tableCell: "text-center border-1 border-[#ccc] border-collapse",
   };
 
 
-  const addRow = () => {
-    const newParams = [...requestFormState.params, { key: "", value: "", checked: false }];
-    setRequestFormState({ ...requestFormState, params: newParams });
-  };
   return (
     <>
-      <p>Query Params</p>
       <div className="w-full">
         <Table className="lg:max-w-[50%] table-fixed">
           <TableHeader className="">
@@ -37,15 +33,15 @@ const ParamsTab = ({ requestFormState, setRequestFormState }: props) => {
             </TableRow>
           </TableHeader>
           <TableBody className="">
-            {requestFormState.params.map((param, index) => (
+            {requestFormState[fieldType].map((value , index) => (
               <KeyValueRow
                 key={index}
                 requestFormState={requestFormState}
                 setRequestFormState={setRequestFormState}
                 rowNumber={index}
+                fieldType={fieldType}
               />
             ))}
-            <KeyValueRow rowNumber={requestFormState.params.length} setRequestFormState={setRequestFormState} requestFormState={requestFormState} />
           </TableBody>
         </Table>
       </div>
@@ -53,4 +49,4 @@ const ParamsTab = ({ requestFormState, setRequestFormState }: props) => {
   );
 };
 
-export default ParamsTab;
+export default FieldTab;
