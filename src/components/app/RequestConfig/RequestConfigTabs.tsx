@@ -1,23 +1,20 @@
 "use client";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import BodyTab from "./Body/BodyTab";
 import { useState } from "react";
 import FieldTab from "./FieldTab";
+import BodyTab from "./Body/BodyTab";
 
-const RequestConfigTabs = () => {
+type Props = {
+  requestFormState: RequestFormData;
+  setRequestFormState: React.Dispatch<React.SetStateAction<RequestFormData>>;
+};
+
+const RequestConfigTabs = ({requestFormState, setRequestFormState}: Props) => {
   const classNames = {
     tabTrigger:
       "data-[state=active]:border-b-5 data-[state=active]:border-b-red-700 cursor-pointer",
   };
 
-  const defaultRequestFormValue: RequestFormData = {
-    "params": [{ key: "", value: "", checked: false }],
-    "headers":[{ key: "", value: "", checked: false }],
-    "body": "",
-    "method": "GET",
-  }
-
-  const [requestFormState, setRequestFormState] = useState<RequestFormData>(defaultRequestFormValue);
 
   return (
     <Tabs defaultValue="params" className="ml-12">

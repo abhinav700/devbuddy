@@ -21,7 +21,6 @@ const KeyValueRow = ({requestFormState, setRequestFormState, rowNumber, fieldTyp
   };
 
   let OldFieldData = requestFormState[fieldType];
-  console.log("OldFieldData", requestFormState)
 
   const addNewRow = () => {
     console.log("Adding new row");

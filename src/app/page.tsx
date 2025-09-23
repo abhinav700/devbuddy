@@ -1,17 +1,30 @@
+"use client"
 import RequestConfigTabs from "@/components/app/RequestConfig/RequestConfigTabs";
 import RequestUrlBar from "@/components/app/RequestUrlBar";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 
 export default function Home() {
+  const defaultRequestFormValue: RequestFormData = {
+    params: [{ key: "", value: "", checked: false }],
+    headers: [{ key: "", value: "", checked: false }],
+    body: "",
+    method: "GET",
+    url: "",
+  };
+
+  const [requestFormState, setRequestFormState] = useState<RequestFormData>(
+    defaultRequestFormValue
+  );
+
   return (
     <div className="flex flex-col py-2">
       <div className="flex items-center justify-around w-full">
-        <RequestUrlBar/> 
-        <Button className="bg-blue-500 w-[100px] text-center font-semibold cursor-pointer">
-          Send
-        </Button>
+        <RequestUrlBar requestFormState={requestFormState} setRequestFormState={setRequestFormState} />
       </div>
-      <RequestConfigTabs/>
+      <RequestConfigTabs
+        requestFormState={requestFormState}
+        setRequestFormState={setRequestFormState}
+      />
     </div>
   );
 }

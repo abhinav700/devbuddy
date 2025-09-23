@@ -9,4 +9,5 @@ type RequestFormData = {
   "headers": KeyValuePair[],
   "body": string,
   "method": "GET" | "POST" | "PUT" | "DELETE",
+  "url"?: string
 }
