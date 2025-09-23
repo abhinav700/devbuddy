@@ -12,12 +12,12 @@ type Props = {
 const RequestConfigTabs = ({requestFormState, setRequestFormState}: Props) => {
   const classNames = {
     tabTrigger:
-      "data-[state=active]:border-b-5 data-[state=active]:border-b-red-700 cursor-pointer",
+      "data-[state=active]:border-b-5 data-[state=active]:border-b-red-700 cursor-pointer mr-6",
   };
 
 
   return (
-    <Tabs defaultValue="params" className="ml-12">
+    <Tabs defaultValue="params" className="ml-12 mt-6">
       <TabsList>
         <TabsTrigger className={classNames.tabTrigger} value="params">
           Params
@@ -31,13 +31,13 @@ const RequestConfigTabs = ({requestFormState, setRequestFormState}: Props) => {
       </TabsList>
       <TabsContent value="params" className="p-2">
         <>
-          <p>Query Params</p>
+          <p className="mb-6">Query Params</p>
           <FieldTab fieldType="params" requestFormState={requestFormState} setRequestFormState={setRequestFormState} />
         </>
       </TabsContent>
       <TabsContent value="headers" className="p-2">
         <>
-          <p>Headers</p>
+          <p className="mb-6">Headers</p>
           <FieldTab fieldType="headers" requestFormState={requestFormState} setRequestFormState={setRequestFormState} />
         </>
       </TabsContent>

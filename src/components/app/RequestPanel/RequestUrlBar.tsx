@@ -1,15 +1,16 @@
 "use client";
 import { Input } from "@/components/ui/input";
-import HttpVerbDropDown from "@/components/app/HttpVerbsDropdown";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import HttpVerbDropDown from "./HttpVerbsDropdown";
 
 type Props = {
   requestFormState: RequestFormData;
   setRequestFormState: React.Dispatch<React.SetStateAction<RequestFormData>>;
+  setResponse: React.Dispatch<React.SetStateAction<any>>
 };
 
-const RequestUrlBar = ({ requestFormState, setRequestFormState }: Props) => {
+const RequestUrlBar = ({ requestFormState, setRequestFormState, setResponse }: Props) => {
   const [parsedJsonBody, setParsedJsonBody] = useState<any>(null);
 
   const inputOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,17 +54,20 @@ const sendRequestHandler = async () => {
     
     parseRequestBody();
     
-    axios.request({
+    const response = await axios.request({
       method: requestFormState.method,
       url: requestFormState.url,
       params,
       headers,
       data: parsedJsonBody,
     })
+
+    setResponse(response);
     console.log(params);
     console.log(headers);
   }catch(e){
     console.log("Error in sendRequestHandler", e);
+    setResponse(e);
   }
 }
  
