@@ -7,7 +7,8 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 
-const page = () => {
+const Page = () => {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const [response, setResponse] = useState<any>(null);
 
   return (
@@ -30,4 +31,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

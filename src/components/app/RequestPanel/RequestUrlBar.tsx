@@ -1,13 +1,13 @@
 "use client";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import HttpVerbDropDown from "./HttpVerbsDropdown";
 import axios from "axios";
 
 type Props = {
   requestFormState: RequestFormData;
   setRequestFormState: React.Dispatch<React.SetStateAction<RequestFormData>>;
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   setResponse: React.Dispatch<React.SetStateAction<any>>
 };
 

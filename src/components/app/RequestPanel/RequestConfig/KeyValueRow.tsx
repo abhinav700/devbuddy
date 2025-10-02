@@ -1,5 +1,4 @@
 "use client";
- 
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   TableCell,
@@ -20,7 +19,7 @@ const KeyValueRow = ({requestFormState, setRequestFormState, rowNumber, fieldTyp
     tableCell: "text-center border-1 border-[#ccc] border-collapse",
   };
 
-  let OldFieldData = requestFormState[fieldType];
+  const OldFieldData = requestFormState[fieldType];
 
   const addNewRow = () => {
     console.log("Adding new row");

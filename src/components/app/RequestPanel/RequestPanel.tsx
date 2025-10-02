@@ -4,6 +4,7 @@ import { useState } from "react";
 import RequestUrlBar from "./RequestUrlBar";
 
 type props = {
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   setResponse: React.Dispatch<React.SetStateAction<any>>
 }
 

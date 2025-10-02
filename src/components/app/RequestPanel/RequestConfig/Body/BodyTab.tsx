@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { json } from "@codemirror/lang-json";
 import CodeMirror, { basicSetup } from "@uiw/react-codemirror";
 import { Diagnostic, linter } from "@codemirror/lint";
