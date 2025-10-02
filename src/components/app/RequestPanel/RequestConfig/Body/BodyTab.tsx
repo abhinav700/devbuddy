@@ -15,7 +15,9 @@ const BodyTab = ({ requestFormState, setRequestFormState }: props) => {
     const diagnostics: Diagnostic[] = [];
     try {
       JSON.parse(view.state.doc.toString());
-    } catch (e: any) {
+    }
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    catch (e: any) {
       diagnostics.push({
         from: 0,
         to: view.state.doc.length,
