@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import HttpVerbDropDown from "./HttpVerbsDropdown";
+import axios from "axios";
 
 type Props = {
   requestFormState: RequestFormData;
@@ -11,8 +12,7 @@ type Props = {
 };
 
 const RequestUrlBar = ({ requestFormState, setRequestFormState, setResponse }: Props) => {
-  const [parsedJsonBody, setParsedJsonBody] = useState<any>(null);
-
+  console.log(setResponse);
   const inputOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       setRequestFormState((prev: RequestFormData) => ({
@@ -26,8 +26,10 @@ const RequestUrlBar = ({ requestFormState, setRequestFormState, setResponse }: P
 
   const parseRequestBody = () => {
     try {
-      const parsed = JSON.parse(requestFormState.body);
-      setParsedJsonBody(parsed);
+      if(!requestFormState.body || !requestFormState.body.trim())
+        return;
+      const parsed = JSON.parse(requestFormState.body.trim());
+      return parsed;
     } catch (e) {
       alert("Invalid JSON");
     }
@@ -52,19 +54,22 @@ const sendRequestHandler = async () => {
     const params = keyValuePairsToObject(requestFormState.params);
     const headers = keyValuePairsToObject(requestFormState.headers);
     
-    parseRequestBody();
+    const parsedBody = await parseRequestBody();
     
     const response = await axios.request({
       method: requestFormState.method,
       url: requestFormState.url,
       params,
       headers,
-      data: parsedJsonBody,
+      data: parsedBody,
     })
 
-    setResponse(response);
-    console.log(params);
-    console.log(headers);
+    const data = await response.data
+
+    console.log(data);
+
+    // setResponse(data.toString());
+    setResponse(JSON.stringify(data, null, 2));
   }catch(e){
     console.log("Error in sendRequestHandler", e);
     setResponse(e);

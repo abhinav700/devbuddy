@@ -13,8 +13,9 @@ export default function RequestPanel({setResponse} : props) {
     headers: [{ key: "", value: "", checked: false }],
     body: "",
     method: "GET",
-    url: "",
+    url: "https://jsonplaceholder.typicode.com/todos/1",
   };
+  console.log(setResponse);
 
   const [requestFormState, setRequestFormState] = useState<RequestFormData>(
     defaultRequestFormValue
