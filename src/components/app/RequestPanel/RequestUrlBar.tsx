@@ -31,7 +31,8 @@ const RequestUrlBar = ({ requestFormState, setRequestFormState, setResponse }: P
       const parsed = JSON.parse(requestFormState.body.trim());
       return parsed;
     } catch (e) {
-      alert("Invalid JSON");
+      alert("Invalid JSON ");
+      console.log("Error in parseRequestBody", e);
     }
   };
 
